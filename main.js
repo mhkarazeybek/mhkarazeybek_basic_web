@@ -76,7 +76,7 @@ class TextScramble {
 
 }
 
-const phrases = ['Muhammed Hüseyin KARAZEYBEK', 'tools\ related to Cyber', 'Security', '&', 'Computer / Science', '&', 'Penetration Testing \ { * }', 'an initiative to help secure the Cyber', '@mhkarazeybek'];
+const phrases = ['Muhammed Hüseyin KARAZEYBEK', 'tools\ related to Cyber', 'Security', '&', 'Computer / Science', '&','Artificial Intelligence','&', 'Penetration Testing \ { * }', 'an initiative to help secure the Cyber', '@mhkarazeybek'];
 const el = document.querySelector('.text-change');
 const fx = new TextScramble(el);
 let counter = 0;
