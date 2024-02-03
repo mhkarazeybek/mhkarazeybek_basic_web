@@ -1,15 +1,12 @@
-document.getElementById("form").addEventListener('submit', (e) => {
+document.getElementById("contactform").addEventListener('submit', (e) => {
   
     // Timeout is needed for form to properly submit with animation
     setTimeout(function(){
      
-    var subscribeForm = document.getElementById("subscribeForm")
-   subscribeForm.setAttribute("style", "-webkit-animation: fadeOut 1s; animation: fadeOut 1s;  animation-fill-mode: forwards;");
-   document.getElementById("form").setAttribute("style", "display:none;");  
-   
-  subscribeForm.innerHTML = `<h1>Your Email Has Sent!</h1> `   
+    var subscribeForm = document.getElementById("result")  
+  subscribeForm.innerHTML = `Email sent failed! try manually.`   
     
-  subscribeForm.setAttribute("style", "-webkit-animation: fadeIn 1s; animation: fadeIn 1s;  animation-fill-mode: forwards;");  
+  subscribeForm.setAttribute("style", "color: #f5d26b; transition: 0.5s ease-in-out");  
   
   },500);
     
