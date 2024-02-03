@@ -6,4 +6,8 @@ emailFormCard.innerHTML = emailFormCard.innerHTML
 
     .replace(/ Google_Entry_ID_Email/g, Google_Entry_ID_Email)
 
-    .replace(/ Google_Entry_ID_TextArea/g, Google_Entry_ID_TextArea);
+    .replace(/ Google_Entry_ID_TextArea/g, Google_Entry_ID_TextArea)
+
+
+
+    ;
