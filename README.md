@@ -1,7 +1,7 @@
-# Welcome My Portfolio
+# Welcome My Page
 
 Nice to meet you
 
-[Visit my portfolio website](https://mhkarazeybek.com)
+[Visit my website](https://mhkarazeybek.com)
 
 ![website](images/mhkarazeybek_portfolio.png)
