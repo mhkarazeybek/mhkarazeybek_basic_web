@@ -1,0 +1,192 @@
+// Get references to elements
+const showContactsBtn = document.getElementById("show-contacts");
+const leftSide = document.getElementById("left-side");
+const overlayPanel = document.getElementById("overlay");
+const dialogPanel = document.getElementById("full-screen-dialog");
+const dialogCloseBtn = document.getElementById("dialog-close-btn");
+const mapIfrem = document.getElementById("map-container");
+const mapSrc =
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4487378.447613746!2d33.10313883619923!3d38.94238321426118!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b0155c964f2671%3A0x40d9dbd42a625f2a!2zVMO8cmtpeWU!5e0!3m2!1str!2str!4v1706926003974!5m2!1str!2str";
+
+// Close dialog on "Escape" key press
+document.addEventListener("keydown", function (event) {
+  // Check if the pressed key is the "Escape" key (key code 27)
+  if (event.key === "Escape" || event.keyCode === 27) {
+    if (dialogPanel && dialogPanel.classList.contains("active")) {
+      // Your code to handle the "Escape" key press goes here
+      dialogPanel.classList.remove("active");
+      overlayPanel.classList.remove("active");
+    }
+  }
+});
+
+// Add click listeners for dialog toggle
+dialogCloseBtn.addEventListener("click", toggleDialog);
+overlayPanel.addEventListener("click", toggleDialog);
+
+function toggleDialog() {
+  dialogPanel.classList.toggle("active");
+  overlayPanel.classList.toggle("active");
+}
+
+// Toggle left side on button click
+showContactsBtn.addEventListener("click", function () {
+  leftSide.classList.toggle("active");
+});
+
+// Add click listeners for testimonial items
+const testimonialsItem = document.querySelectorAll(".card-item.team");
+testimonialsItem.forEach(function (item) {
+  item.addEventListener("click", function () {
+    toggleDialog();
+    // Retrieve data for dialog
+    updateDialog(item);
+  });
+});
+
+// Function to update dialog content
+function updateDialog(item) {
+  const imageSrc = item.querySelector(".photo img").src;
+  const cardItemTitle = item.querySelector(".card-item-title").textContent;
+  const cardItemPosition = item.querySelector(
+    ".card-item-position"
+  ).textContent;
+  const itemText = item.querySelector(".item-text").textContent;
+  const itemDate = item.querySelector(".item-test-mo-date").textContent;
+
+  // Set values in the dialog
+  const dialogPersonImg = document.querySelector(".dialog-person-img");
+  const dialogPersonName = document.querySelector(".dialog-person-name");
+  const dialogPersonPosition = document.querySelector(
+    ".dialog-person-position"
+  );
+  const dialogText = document.querySelector(".dialog-text");
+  const dialogDate = document.querySelector(".dialog-date");
+
+  dialogPersonImg.src = imageSrc;
+  dialogPersonName.textContent = cardItemTitle;
+  dialogPersonPosition.textContent = cardItemPosition;
+  dialogText.textContent = itemText;
+  dialogDate.textContent = itemDate;
+}
+
+const menuItems = document.querySelectorAll(".menu-bar-link ");
+
+// Add click event listener to each menu item
+menuItems.forEach((item) => {
+  item.addEventListener("click", function () {
+    // Remove "active" class from all menu items
+    menuItems.forEach((item) => item.classList.remove("active"));
+
+    // Add "active" class to the clicked menu item
+    this.classList.add("active");
+
+    if (this.textContent.trim() === "Contact") {
+      mapIfrem.src = mapSrc;
+    }
+
+    // Hide all sections
+    const sections = document.querySelectorAll(".the-section");
+    sections.forEach((section) => section.classList.remove("active"));
+
+    // Show the corresponding section
+    const sectionName = this.textContent.trim().toLowerCase() + "-section";
+    const clickedSection = document.querySelector(`.${sectionName}`);
+    clickedSection.classList.add("active");
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Get all category buttons
+  const categoryButtons = document.querySelectorAll(".category-li-btn");
+
+  // Get all project items
+  const projectItems = document.querySelectorAll(
+    ".section-list.projects .port-list-li"
+  );
+
+  // Add click event listener to each category button
+  categoryButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      // Remove "active" class from all category buttons
+      categoryButtons.forEach((btn) => btn.classList.remove("active"));
+
+      // Add "active" class to the clicked category button
+      button.classList.add("active");
+
+      // Get the category name of the clicked button
+      const categoryName = button.textContent.trim();
+
+      // Show/hide project items based on the category
+      projectItems.forEach((item) => {
+        const subCategory = item
+          .querySelector(".sub-category")
+          .textContent.trim();
+        const itemCategory = item
+          .querySelector(".card-item-port-text")
+          .textContent.trim();
+        const isAllCategory = categoryName === "All";
+
+        if (
+          isAllCategory ||
+          itemCategory === categoryName ||
+          (categoryName === "Open Source Project" &&
+            subCategory === "Open Source Project")
+        ) {
+          item.style.display = "block";
+        } else {
+          item.style.display = "none";
+        }
+      });
+    });
+  });
+});
+
+const mode_toggle_btn = document.getElementById("mode-toggle-btn");
+const mode_btn = document.getElementById("mood-btn");
+const mode_icon = document.getElementById("mood-icon");
+
+let lightMode = localStorage.getItem("light-mode");
+
+const enableLightMode = () => {
+  // 1. Add the class to the body
+  document.body.classList.add("light-mode");
+  mode_btn.classList.add("light-mode");
+  mode_icon.src = "images/moon.svg";
+
+  // 2. Update darkMode in localStorage
+  localStorage.setItem("light-mode", "enabled");
+};
+
+const disableLightMode = () => {
+  // 1. Remove the class from the body
+  document.body.classList.remove("light-mode");
+  mode_btn.classList.remove("light-mode");
+  mode_icon.src = "images/sun.svg";
+  // 2. Update darkMode in localStorage
+  localStorage.setItem("light-mode", null);
+};
+
+// If the user already visited and enabled darkMode
+// start things off with it on
+if (lightMode === "enabled") {
+  enableLightMode();
+} else {
+  disableLightMode();
+}
+
+// When someone clicks the button
+mode_toggle_btn.addEventListener("click", () => {
+  // get their darkMode setting
+  lightMode = localStorage.getItem("light-mode");
+
+  // if it not current enabled, enable it
+  if (lightMode !== "enabled") {
+    enableLightMode();
+    console.log(lightMode + " enabled");
+    // if it has been enabled, turn it off
+  } else {
+    disableLightMode();
+    console.log(lightMode + " enabled");
+  }
+});
