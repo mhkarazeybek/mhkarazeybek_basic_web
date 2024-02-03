@@ -152,7 +152,7 @@ const enableLightMode = () => {
   // 1. Add the class to the body
   document.body.classList.add("light-mode");
   mode_btn.classList.add("light-mode");
-  mode_icon.src = "images/moon.svg";
+  mode_icon.src = "images/moon.png";
 
   // 2. Update darkMode in localStorage
   localStorage.setItem("light-mode", "enabled");
@@ -162,7 +162,7 @@ const disableLightMode = () => {
   // 1. Remove the class from the body
   document.body.classList.remove("light-mode");
   mode_btn.classList.remove("light-mode");
-  mode_icon.src = "images/sun.svg";
+  mode_icon.src = "images/sun.png";
   // 2. Update darkMode in localStorage
   localStorage.setItem("light-mode", null);
 };
