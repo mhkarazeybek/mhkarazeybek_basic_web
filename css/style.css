@@ -974,29 +974,52 @@ add scrollbar color */
 /* skills list class */
 .skills-list {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: flex-start;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 .skills-item {
   box-shadow: var(--shadow-1);
-  padding: 5px 10px;
+  padding: 6px 12px;
   width: fit-content;
   border-radius: 7px;
   text-transform: capitalize;
   color: var(--light-gray);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+/* Tech Stack categories */
+.skills-category {
+  margin-bottom: 18px;
+  clear: both;
+}
+
+.skills-category-title {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--light-gray);
+  margin: 0 0 10px 2px;
+  padding-left: 10px;
+  border-left: 3px solid var(--orange-yellow-crayola, hsl(45, 100%, 71%));
 }
 
 .skills-box {
   position: relative;
   background: var(--border-gradient-onyx);
-  padding: 30px;
+  padding: 16px 18px;
   border-radius: 14px;
   box-shadow: var(--shadow-2);
   height: fit-content;
-  width: fit-content;
-  float: left;
-  margin-right: 10px;
+  width: 100%;
+  float: none;
+  margin: 0;
   z-index: 1;
   transition: var(--transition-1);
 }
@@ -1452,7 +1475,11 @@ add scrollbar color */
 
   /* Skills section */
   .skills-box {
-    padding: 25px 10px;
+    padding: 14px 12px;
+  }
+  .skills-item {
+    font-size: 12px;
+    padding: 5px 10px;
   }
   /* section protfolio 1020 */
   .section-list.projects {
